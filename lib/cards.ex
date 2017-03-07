@@ -28,11 +28,11 @@ defmodule Cards do # module
   end
 
   def load(filename) do
-    {status, binary} = File.read(filename)
-
-    case status do
-      :ok -> :erlang.binary_to_term binary
-      :error -> "That file doesn not exist"
+    case File.read(filename) do
+      {:ok, binary} -> :erlang.binary_to_term binary
+      # :foo is an atom, used throughout elixir to handling status codes or messages or control flow - exactly like strings
+      # something you would want to codify messages
+      {:error, _reason}-> "That file does not exist"
     end
   end
 end
