@@ -6,8 +6,6 @@ defmodule Cards do # module
     for suit <- suits, value <- values do # multiple comprehensions
         "#{value} of #{suit}"
     end
-
-
   end
 
   def shuffle(deck) do # passing an arguement to a method (same as any other langauge)
@@ -34,5 +32,11 @@ defmodule Cards do # module
       # something you would want to codify messages
       {:error, _reason}-> "That file does not exist"
     end
+  end
+
+  def create_hand(hand_size) do
+    Cards.create_deck
+    |> Cards.shuffle
+    |> Cards.deal(hand_size)
   end
 end
